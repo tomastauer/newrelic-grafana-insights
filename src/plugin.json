@@ -1,0 +1,44 @@
+{
+  "type": "datasource",
+  "name": "newrelic-insights",
+  "id": "pipedrive-newrelic-insights",
+  "metrics": true,
+  "routes": [
+    {
+      "path": "insights",
+      "method": "GET",
+      "url": "https://insights-api.newrelic.com/v1/accounts/{{.JsonData.appId}}/",
+      "headers": [
+        {"name": "X-Query-Key", "content": "{{.SecureJsonData.insightsApiKey}}"}
+      ]
+    }
+  ],
+  "info": {
+    "description": "Simple plugin for quering new relic using NRQL",
+    "author": {
+      "name": "Tomas Tauer",
+      "url": "http://pipedrive.com"
+    },
+    "keywords": [
+      "new relic",
+      "NRQL"
+    ],
+    "links": [
+      {
+        "name": "Website",
+        "url": "https://github.com/grafana/simple-datasource"
+      },
+      {
+        "name": "License",
+        "url": "https://github.com/grafana/simple-datasource/blob/master/LICENSE"
+      }
+    ],
+    "screenshots": [],
+    "version": "%VERSION%",
+    "updated": "%TODAY%"
+  },
+  "dependencies": {
+    "grafanaVersion": "6.5.x",
+    "plugins": []
+  }
+}
