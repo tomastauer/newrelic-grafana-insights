@@ -11,16 +11,14 @@ install:
   # Get the latest stable version of Node.js or io.js
   - ps: Install-Product node $env:nodejs_version
   # install modules
-  - npm install -g yarn --quiet
-  - yarn install --pure-lockfile
+  - npm install
 
 # Post-install test scripts.
 test_script:
   # Output useful info for debugging.
-  - node --version
-  - npm --version
+  - npm run test
 
 # Run the build
 build_script:
-  - yarn dev   # This will also run prettier!
-  - yarn build # make sure both scripts work
+  - npm run dev   # This will also run prettier!
+  - npm run build # make sure both scripts work
