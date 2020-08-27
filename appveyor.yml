@@ -22,3 +22,7 @@ test_script:
 build_script:
   - npm run dev   # This will also run prettier!
   - npm run build # make sure both scripts work
+
+artifacts:
+  - path: dist
+    name: dist
