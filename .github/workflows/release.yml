@@ -17,7 +17,8 @@ jobs:
         # uses: ncipollo/release-action@1df3b9d90da563e0a6f5e19f350774bc1074df54
         uses: ncipollo/release-action@v1.7.2
         with:
-          artifact: dist
+          artifacts: dist
           artifactContentType: "application/zip" 
           omitBody: true
+          token: ${{ secrets.GITHUB_TOKEN }}
 
