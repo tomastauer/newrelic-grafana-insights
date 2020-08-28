@@ -9,8 +9,19 @@ jobs:
       with:
         fetch-depth: '0'
     - name: Bump version and push tag
+      id: version
       uses: anothrNick/github-tag-action@1.17.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DEFAULT_BUMP: patch
         WITH_V: true
+    - name: Create a Release
+      uses: actions/create-release@v1
+      with:
+        # The name of the tag. This should come from the webhook payload, `github.GITHUB_REF` when a user pushes a new tag
+        tag_name: ${{ steps.version.outputs.tag }}
+        # The name of the release. For example, `Release v1.0.1`
+        release_name: Release ${{ steps.version.outputs.tag }}
+        # Text describing the contents of the tag.
+        
+        
