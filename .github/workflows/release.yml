@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: haya14busa/action-update-semver@v1
+      
+#     Examples
+      - name: Increment Step Patch
+        id: increment-semver-patch
+        uses: Benbentwo/increment-semver@master
         with:
-          major_version_tag_only: true  # (optional, default is "false")
+          version-level: '-p'
