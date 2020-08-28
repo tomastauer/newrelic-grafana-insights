@@ -12,6 +12,10 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - name: Actions Tagger
+        # You may pin to the exact commit or the version.
+        # uses: Actions-R-Us/actions-tagger@95c51c646e75db5c6b7d447e3087bcee58677341
+        uses: Actions-R-Us/actions-tagger@v2.0.1
       - name: Create Release
         # You may pin to the exact commit or the version.
         # uses: ncipollo/release-action@1df3b9d90da563e0a6f5e19f350774bc1074df54
