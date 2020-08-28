@@ -25,6 +25,26 @@ jobs:
         # The name of the release. For example, `Release v1.0.1`
         release_name: Release ${{ steps.version.outputs.tag }}
         # Text describing the contents of the tag.
+    - name: Download a Build Artifact
+      id: download
+      uses: actions/download-artifact@v2.0.5
+      with:
+        # Artifact name
+        name: build
+        # Destination path
+        path: dist
+    - name: Upload a Release Asset
+      uses: actions/upload-release-asset@v1.0.2
+      with:
+        # The URL for uploading assets to the release
+        upload_url: ${{ steps.download.outputs.download-path }}
+        # The path to the asset you want to upload
+        asset_path: dist
+        # The name of the asset you want to upload
+        asset_name: build
+        # The content-type of the asset you want to upload. See the supported Media Types here: https://www.iana.org/assignments/media-types/media-types.xhtml for more information
+        asset_content_type: application/zip
+       
        
         
         
