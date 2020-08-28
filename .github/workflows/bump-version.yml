@@ -23,5 +23,6 @@ jobs:
         # The name of the release. For example, `Release v1.0.1`
         release_name: Release ${{ steps.version.outputs.tag }}
         # Text describing the contents of the tag.
+        token: ${{ secrets.GITHUB_TOKEN }}
         
         
