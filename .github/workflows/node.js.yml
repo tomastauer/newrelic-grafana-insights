@@ -45,4 +45,8 @@ jobs:
         # A file, directory or wildcard pattern that describes what to upload
         path: dist
         # The desired behavior if no files are found using the provided path.
+    - name: Bump version and push tag
+      uses: hennejg/github-tag-action@v4.1.jh1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}:  
 
