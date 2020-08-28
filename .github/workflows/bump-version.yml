@@ -17,12 +17,14 @@ jobs:
         WITH_V: true
     - name: Create a Release
       uses: actions/create-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         # The name of the tag. This should come from the webhook payload, `github.GITHUB_REF` when a user pushes a new tag
         tag_name: ${{ steps.version.outputs.tag }}
         # The name of the release. For example, `Release v1.0.1`
         release_name: Release ${{ steps.version.outputs.tag }}
         # Text describing the contents of the tag.
-        token: ${{ secrets.GITHUB_TOKEN }}
+       
         
         
