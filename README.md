@@ -1,5 +1,7 @@
 # New Relic Insights – Grafana data source plugin
 
+![Build](https://github.com/tomastauer/newrelic-grafana-insights/workflows/Build/badge.svg)
+
 Allows querying the New Relic Insights using NRQL and display the data inside the Grafana dashboard.
 
 ## Getting started
