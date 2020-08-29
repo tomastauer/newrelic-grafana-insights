@@ -3,6 +3,34 @@ on:
   workflow_dispatch:
 jobs:
   build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build artifacts
+      uses: actions/checkout@v2
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm 
+        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-node-
+          ${{ runner.OS }}-
+    - name: Install dependencies
+      run: npm ci
+    - run: npm run build --if-present
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist
+        
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -26,32 +54,10 @@ jobs:
         # The name of the release. For example, `Release v1.0.1`
         release_name: Release ${{ steps.version.outputs.tag }}
         # Text describing the contents of the tag.
-    - name: Build artifacts
-      uses: actions/checkout@v2
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
+    - name: Download artifacts
+      uses: actions/download-artifact@v2
       with:
-        node-version: 12.x
-    - name: Cache Node.js modules
-      uses: actions/cache@v2
-      with:
-       # npm cache files are stored in `~/.npm` on Linux/macOS
-        path: ~/.npm 
-        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.OS }}-node-
-          ${{ runner.OS }}-
-    - name: Install dependencies
-      run: npm ci
-    - run: npm run build --if-present
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.1.4
-      with:
-        # Artifact name
-        name: dist.zip
-        # A file, directory or wildcard pattern that describes what to upload
-        path: dist
-        # The desired behavior if no files are found using the provided path.
+          name: dist  
     - name: Upload Release Asset
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
@@ -61,8 +67,8 @@ jobs:
         # The URL for uploading assets to the release
         upload_url: ${{ steps.release.outputs.upload_url }}
         # The path to the asset you want to upload
-        asset_path: ./dist.zip
-        asset_name: dist.zip
+        asset_path: dist.zip
+        asset_name: dist
         asset_content_type: application/zip
        
        
