@@ -36,7 +36,6 @@ jobs:
         tag_name: ${{ steps.version.outputs.tag }}
         release_name: Release ${{ steps.version.outputs.tag }}
   
-    - name: Build
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
