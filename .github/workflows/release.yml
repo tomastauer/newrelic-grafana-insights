@@ -1,10 +1,17 @@
 name: Release
 on:
   workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Bump'     
+        required: true
+        default: 'patch'
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+
     steps:
    
     - uses: actions/checkout@master
@@ -16,7 +23,7 @@ jobs:
       uses: anothrNick/github-tag-action@1.17.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DEFAULT_BUMP: patch
+        DEFAULT_BUMP: ${{ github.event.inputs.bump }}
         WITH_V: true
    
     - name: Create a Release
