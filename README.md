@@ -1,7 +1,5 @@
 # New Relic Insights – Grafana data source plugin
 
-[![Build status](https://ci.appveyor.com/api/projects/status/6v95t8glk7x1qiho?svg=true)](https://ci.appveyor.com/project/tomastauer/newrelic-grafana-insights)
-
 Allows querying the New Relic Insights using NRQL and display the data inside the Grafana dashboard.
 
 ## Getting started
