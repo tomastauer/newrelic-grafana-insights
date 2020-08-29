@@ -24,11 +24,16 @@ jobs:
       run: npm ci
     - run: npm run build --if-present
     - name: Upload a Build Artifact
+      id: upload
       uses: actions/upload-artifact@v2
       with:
         name: dist
         path: dist
 
+    - name: echo upload
+      run: echo ${{steps.upload.outputs}}
+    - name: echo upload2
+      run: echo ${{steps.upload.outputs.uplopad-path}}
     - uses: actions/checkout@master
       with:
         fetch-depth: '0'
