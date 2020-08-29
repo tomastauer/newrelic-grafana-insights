@@ -6,29 +6,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: Build artifacts
-      uses: actions/checkout@v2
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    - name: Cache Node.js modules
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm 
-        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.OS }}-node-
-          ${{ runner.OS }}-
-    - name: Install dependencies
-      run: npm ci
-    - run: npm run build --if-present
-    - name: Zip Release
-      # You may pin to the exact commit or the version.
-      # uses: TheDoctor0/zip-release@a1afcab9c664c9976ac398fa831eac67bed1eb0e
-      uses: montudor/action-zip@v0.1.0
-      with:
-        args: zip -qq -r ./dist.zip ./dist
+   
     - uses: actions/checkout@master
       with:
         fetch-depth: '0'
@@ -50,6 +28,27 @@ jobs:
         # The name of the release. For example, `Release v1.0.1`
         release_name: Release ${{ steps.version.outputs.tag }}
         # Text describing the contents of the tag.
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm 
+        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-node-
+          ${{ runner.OS }}-
+    - name: Install dependencies
+      run: npm ci
+    - run: npm run build --if-present
+    - name: Zip Release
+      # You may pin to the exact commit or the version.
+      # uses: TheDoctor0/zip-release@a1afcab9c664c9976ac398fa831eac67bed1eb0e
+      uses: montudor/action-zip@v0.1.0
+      with:
+        args: zip -qq -r ./dist.zip ./dist
     - name: list
       run: ls -R
     - name: Upload Release Asset
