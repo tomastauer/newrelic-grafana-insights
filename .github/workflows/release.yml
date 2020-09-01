@@ -59,7 +59,7 @@ jobs:
     - name: Zip Release
       uses: montudor/action-zip@v0.1.0
       with:
-        args: zip -qq -r ./dist.zip ./dist
+        args: zip -qq -r ./newrelic-grafana-insights.zip ./dist
 
     - name: Upload Release Asset
       id: upload-release-asset 
@@ -68,6 +68,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with: 
         upload_url: ${{ steps.release.outputs.upload_url }}
-        asset_path: dist.zip
+        asset_path: newrelic-grafana-insights.zip
         asset_name: newrelic-grafana-insights.zip
         asset_content_type: application/zip
