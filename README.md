@@ -5,7 +5,7 @@
 Allows querying the New Relic Insights using NRQL and display the data inside the Grafana dashboard.
 
 ## Getting started
-Download the latest release and unpack the `dist.zip` file to your `grafana` plugins directory (e.g. `/usr/local/var/lib/grafana/plugins`)
+Download the latest release and unpack the `newrelic-grafana-insights.zip` file to your `grafana` plugins directory (e.g. `/usr/local/var/lib/grafana/plugins`). You need to restart your grafana server to load new plugin.
 
 Go to the plugin settings and enter your New relic appId and token (it has to have rights to query New relic server using NRQL)
 
