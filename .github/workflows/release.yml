@@ -56,10 +56,13 @@ jobs:
     - name: Run build
       run: npm run build --if-present
     
+    - name: Rename dist folder
+      run: mv dist newrelic-grafana-insights
+    
     - name: Zip Release
       uses: montudor/action-zip@v0.1.0
       with:
-        args: zip -qq -r ./newrelic-grafana-insights.zip ./dist
+        args: zip -qq -r ./newrelic-grafana-insights.zip ./newrelic-grafana-insights
 
     - name: Upload Release Asset
       id: upload-release-asset 
