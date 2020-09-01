@@ -1,7 +1,7 @@
 {
   "type": "datasource",
-  "name": "newrelic-insights",
-  "id": "pipedrive-newrelic-insights",
+  "name": "newrelic-grafana-insights",
+  "id": "newrelic-grafana-insights",
   "metrics": true,
   "routes": [
     {
@@ -26,11 +26,11 @@
     "links": [
       {
         "name": "Website",
-        "url": "https://github.com/grafana/simple-datasource"
+        "url": "https://github.com/tomastauer/newrelic-grafana-insights"
       },
       {
         "name": "License",
-        "url": "https://github.com/grafana/simple-datasource/blob/master/LICENSE"
+        "url": "https://github.com/tomastauer/newrelic-grafana-insights/blob/master/LICENSE"
       }
     ],
     "screenshots": [],
