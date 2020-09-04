@@ -61,7 +61,7 @@ export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
     } catch (e) {
       return {
         status: 'failure',
-        message: e,
+        message: e.data.message,
       };
     }
   }

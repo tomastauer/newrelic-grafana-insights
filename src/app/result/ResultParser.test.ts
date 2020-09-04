@@ -36,7 +36,7 @@ describe(ResultParser.name, () => {
     ['SELECT QUERY TIMESERIES', 'timeSeriesNoFacetParse'],
     ['SELECT QUERY TIMESERIES FACET a', 'timeSeriesFacetParse'],
   ] as Array<[string, string]>)('should for query %s call %s', (query, parser) => {
-    new ResultParser(new ContainsConstraint(query), 'alias').parseResult({}, 'refId');
+    new ResultParser(new ContainsConstraint(query)).parseResult({}, 'refId');
 
     expect(mapping[parser]).toHaveBeenCalled();
   });
