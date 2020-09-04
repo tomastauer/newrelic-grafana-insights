@@ -54,7 +54,7 @@ jobs:
       run: npm ci
     
     - name: Run build
-      run: npm run build --if-present
+      run: npm run dev --if-present
     
     - name: Rename dist folder
       run: mv dist newrelic-grafana-insights
