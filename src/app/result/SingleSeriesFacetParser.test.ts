@@ -23,7 +23,7 @@ it('should return parsed data', () => {
           "name": "facet2 count",
           "type": "number",
           "values": Array [
-            1,
+            2,
           ],
         },
       ],
