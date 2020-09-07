@@ -25,7 +25,7 @@ export class SingleSeriesFacetParser implements Parser {
     const pivotedFacets = data.facets.reduce((pivot, curr) => {
       const name = getSingleString(curr.name);
 
-      parsedValues.forEach(item => {
+      parseValueResult(curr.results[0]).forEach(item => {
         pivot[`${name} ${item.name}`] = item.value;
       });
       return pivot;
