@@ -7,7 +7,7 @@
     "test": "grafana-toolkit plugin:test",
     "dev": "grafana-toolkit plugin:dev",
     "watch": "grafana-toolkit plugin:dev --watch",
-    "copy": "cp -R dist /usr/local/var/lib/grafana/plugins"
+    "copy": "cp -R dist ~/grafana-plugins"
   },
   "author": "Tomas Tauer",
   "license": "MIT",

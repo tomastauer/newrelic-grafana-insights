@@ -1,5 +1,5 @@
 import defaults from 'lodash/defaults';
-import { BackendSrv, BackendSrvRequest } from '@grafana/runtime';
+import { BackendSrv, BackendSrvRequest, getTemplateSrv } from '@grafana/runtime';
 import { DataQueryRequest, DataQueryResponse, DataSourceApi, DataSourceInstanceSettings } from '@grafana/data';
 
 import { MyQuery, MyDataSourceOptions, defaultQuery } from './types';
@@ -25,10 +25,13 @@ export class DataSource extends DataSourceApi<MyQuery, MyDataSourceOptions> {
         const plainQuery = defaults(target, defaultQuery);
         const query = new Query(plainQuery.nrql);
 
-        const finalQuery = query.builder
-          .withDateConstraints(from, to)
-          .builder.withTimeSeriesClause(intervalMs ?? 0, from, to)
-          .toString();
+        const finalQuery = getTemplateSrv().replace(
+          query.builder
+            .withDateConstraints(from, to)
+            .builder.withTimeSeriesClause(intervalMs ?? 0, from, to)
+            .toString(),
+          options.scopedVars
+        );
 
         const request: BackendSrvRequest = {
           method: 'GET',
